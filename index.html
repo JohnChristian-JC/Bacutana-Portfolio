@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - John Christian's Simple Website</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Simple Website</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Introduction</h2>
+            <p>Hi this is a simple website, I am John Christian!</p>
+        </section>
+        
+        <section id="joke-section">
+            <h2>Need a Laugh? Get a Random Joke!</h2>
+            <p id="joke-setup">Click the button to see a random joke!</p>
+            <p id="joke-punchline"></p>
+            <button onclick="fetchJoke()">Get a Joke</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 John Christian Bacutana. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to fetch a joke from the API
+        async function fetchJoke() {
+            try {
+                const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+                const joke = await response.json();
+                
+                // Display the joke setup and punchline
+                document.getElementById('joke-setup').innerText = joke.setup;
+                document.getElementById('joke-punchline').innerText = joke.punchline;
+            } catch (error) {
+                document.getElementById('joke-setup').innerText = 'Oops! Could not load a joke.';
+                document.getElementById('joke-punchline').innerText = '';
+            }
+        }
+    </script>
+</body>
+</html>
